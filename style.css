@@ -1,9 +1,18 @@
+*{
+    font-family: 'Lato', sans-serif;
+}
 #wrapper{
-    width: 80%;
+    width: 90%;
     margin: auto;
+    padding-top: 100px;
 }
 h1{
     text-align: center;
+    font-weight: lighter;
+    padding: 20px 0;
+    background-color: #daecf0;
+    position: fixed;
+    width: 100%;
 }
 .WaterStat, .TempStat, .CO2Stat{
     width: 300px;
@@ -11,12 +20,12 @@ h1{
     padding: 20px;
     float: left;
     border-radius: 50px;
-    border: 1px solid #e100ff;
+    border: 1px solid #00aeff;
     margin: 10px;
 }
 .WaterStat h5, .TempStat h5, .CO2Stat h5{
     text-align: center;
 }
-.graph img{
-    width: 200px;
+img.graph{
+    width: 33%;
 }

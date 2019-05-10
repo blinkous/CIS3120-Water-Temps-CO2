@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>MyPage</title>
+    <title>Water, Temp & C02</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -9,13 +9,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:100|Open+Sans" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body>
+<h1>WATER, TEMPERATURES AND CO2</h1>
 <div id="wrapper">
-    <h1>Water, Temperatures, and CO2</h1>
-    <img class="graph" src="water_graph.png"/><img class="graph" src="temp_graph.png"/><img class="graph" src="co2_graph.png"/><div class="WaterStat"><h5>Lowest Water Consumption</h5>
+    <!-- <h1>Water, Temperatures, and CO2</h1> -->
+    <h3 id="timeSeries">Time Series Graphs</h3><img class="graph" src="water_graph.png"/><img class="graph" src="temp_graph.png"/><img class="graph" src="co2_graph.png"/><h3 id="timeSeriesStats">Time Series Stats</h3><div class="WaterStat"><h5>Lowest Water Consumption</h5>
     <p>Year: 2014.0</p>
     <p>Water: 996.0</p>
     <p>Temp: 54.4</p>

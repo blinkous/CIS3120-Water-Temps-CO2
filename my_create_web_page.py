@@ -1,3 +1,4 @@
+# Create and launch the entire page using a string of content and the filename
 def createHtml(newContent, filename):
     headers = getHeaders()
     ending = getPageEnd()
@@ -22,6 +23,7 @@ def getPageEnd():
     ending = f.read()
     return ending
 
+# Creating tags
 def myCreateNewTag(tagName, string):
     tag = "<" + tagName + ">" + string + "</" + tagName + ">"
     return tag
@@ -30,6 +32,11 @@ def myCreateNewTagClass(tagName, string, myClass):
     tag = "<" + tagName + " class=\"" + myClass + "\">" + string + "</" + tagName + ">"
     return tag
     
+def myCreateNewTagID(tagName, string, myid):
+    tag = "<" + tagName + " id=\"" + myid + "\">" + string + "</" + tagName + ">"
+    return tag
+    
+
 def myCreateSelfClosingTag(tagName, string):
     tag = "<" + tagName + ">" + string + "/>"
     return tag
@@ -37,6 +44,11 @@ def myCreateSelfClosingTag(tagName, string):
 def myCreateSelfClosingTagClass(tagName, string, myClass):
     tag = "<" + tagName + " class=\"" + myClass + "\"" + string + "/>"
     return tag
+
+def myCreateSelfClosingTagID(tagName, string, myid):
+    tag = "<" + tagName + " id=\"" + myid + "\">" + string + "/>"
+    return tag
+
 
 def myCreateImgTag(imgSrc):
     tag = "<img src=\"" + imgSrc + "\"/>"

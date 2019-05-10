@@ -19,7 +19,8 @@ WaterCons_df = WaterCons_df[(WaterCons_df['Year'] >= lowerBoundYear) & (WaterCon
 Temps_df = Temps_df[(Temps_df['Year'] >= lowerBoundYear) & (Temps_df['Year'] <= upperBoundYear)].reset_index()
 CO2_df = CO2_df[(CO2_df['Year'] >= lowerBoundYear) & (CO2_df['Year'] <= upperBoundYear)].reset_index()
 
-# Optional: graph of all 3 datasets
+myHTMLContent += w.myCreateNewTagID('h3', 'Time Series Graphs', 'timeSeries')
+# Graph of all 3 datasets
 import matplotlib.pyplot as plt
 waterVals = list(WaterCons_df['TotalCons'])
 yVals = list(WaterCons_df['Year'])
@@ -29,26 +30,31 @@ co2Vals = list(CO2_df['CO2'])
 plt.clf()
 myImages = ""
 plt.plot(yVals, waterVals, color='skyblue')
+plt.title("Water Consumption")
 plt.savefig('water_graph.png')
 myImages += w.myCreateImgTagClass('water_graph.png', 'graph')
 plt.clf()
 
 plt.plot(yVals, tempVals, color='green')
+plt.title("Temperatures")
 plt.savefig('temp_graph.png')
 myImages += w.myCreateImgTagClass('temp_graph.png', 'graph')
 plt.clf()
 
 plt.plot(yVals, co2Vals, color='brown')
+plt.title("CO2")
 plt.savefig('co2_graph.png')
 myImages += w.myCreateImgTagClass('co2_graph.png', 'graph')
 plt.clf()
+
+myHTMLContent += myImages
 
 # Creating one dataframe to contain all of the data
 TempsOnly_df = Temps_df['Temp']
 CO2Only_df = CO2_df['CO2']
 data = pd.concat([WaterCons_df, TempsOnly_df, CO2Only_df], axis=1, sort=False)
 data = data.drop(columns=['index'])
-print(data)
+# print(data)
 
 # 2: Finding highest and lowest ======================================================================
 # Get the stats in HTML form
@@ -98,7 +104,8 @@ def findMinMax(myData, myDataColumn, myMeasure, WaterCons_df, Temps_df, CO2_df, 
 
     return myhtmlContentFun
 
-# Water Consumption
+# Getting max and mins
+myHTMLContent += w.myCreateNewTagID('h3', 'Time Series Stats', 'timeSeriesStats')
 myHTMLContent = findMinMax(WaterCons_df, 'TotalCons', 'Water Consumption', WaterCons_df, Temps_df, CO2_df, myHTMLContent, 'WaterStat')
 myHTMLContent = findMinMax(Temps_df, 'Temp', 'Temperatures', WaterCons_df, Temps_df, CO2_df, myHTMLContent, 'TempStat')
 myHTMLContent = findMinMax(CO2_df, 'CO2', 'CO2', WaterCons_df, Temps_df, CO2_df, myHTMLContent, 'CO2Stat')
@@ -106,4 +113,4 @@ myHTMLContent = findMinMax(CO2_df, 'CO2', 'CO2', WaterCons_df, Temps_df, CO2_df,
 
 filename = 'file:///Users/Sara/Documents/Python/Group_Project/web_version/python_page.html'
 
-w.createHtml(myImages + myHTMLContent, filename)
+w.createHtml(myHTMLContent, filename)
