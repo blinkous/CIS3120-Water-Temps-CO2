@@ -111,6 +111,39 @@ myHTMLContent = findMinMax(Temps_df, 'Temp', 'Temperatures', WaterCons_df, Temps
 myHTMLContent = findMinMax(CO2_df, 'CO2', 'CO2', WaterCons_df, Temps_df, CO2_df, myHTMLContent, 'CO2Stat')
 
 
-filename = 'file:///Users/Sara/Documents/Python/Group_Project/web_version/python_page.html'
+# Creating the data in javascript
+myArrays = "<script>"
+yearArray = """var yearArr = [];
+"""
+waterArray = """var waterArr = [];
+"""
+tempArray = """var tempArr = [];
+"""
+co2Array = """var co2Arr = [];
+"""
+for year in WaterCons_df['Year']:
+    year = to_str(year)
+    yearArray += "yearArr.push(" + year + """);
+    """
 
+for water in WaterCons_df['TotalCons']:
+    water = to_str(water)
+    waterArray += "waterArr.push(" + water + """);
+    """
+
+for temp in Temps_df['Temp']:
+    temp = to_str(temp)
+    tempArray += "tempArr.push(" + temp + """);
+    """
+
+for co2 in CO2_df['CO2']:
+    co2 = to_str(co2)
+    co2Array += "co2Arr.push(" + co2 + """);
+    """
+
+myArrays += yearArray + waterArray + tempArray + co2Array + "</script>"
+
+myHTMLContent += myArrays
+
+filename = 'file:///Users/Sara/Documents/Python/Group_Project/web_version/python_page.html'
 w.createHtml(myHTMLContent, filename)
