@@ -112,3 +112,9 @@ h3{
 #submit:hover{
     background-color: #cecece;
 }
+h4.water{
+    color: #008be7;
+}
+h4.co2{
+    color: #a80000;
+}

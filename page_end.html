@@ -36,15 +36,20 @@ function getResults(){
     }
     if(match > 0){
         var avgW = totalW/match
-        var avgC = (totalC/match)/365
-
+        var avgC = (totalC/match)
         var prediction = "<div class=\"predict\">";
-        prediction += "<h4>Predicted Water Consumption</h4>";
+        prediction += "<h4 class=\"water\">Predicted Water Consumption</h4>";
         prediction += "<p>" + avgW + " million gallons per day</p>";
-        prediction += "<h4>Predicted CO2 Em</h4>";
+        prediction += "<h4 class=\"co2\">Predicted CO2 Emissions</h4>";
+        prediction += "<p>" + avgC + " million metric tons per year</p>";
+        avgC /= 365;
         prediction += "<p>" + avgC + " million metric tons per day</p>";
         prediction += "</div>";
         results += prediction;
+    }
+
+    if(match == 0){
+        results = "<p>No Results</p>"
     }
 
     $('#results').html(results);
