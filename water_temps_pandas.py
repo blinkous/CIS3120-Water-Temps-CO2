@@ -95,12 +95,16 @@ def findMinMax(myData, myDataColumn, myMeasure, WaterCons_df, Temps_df, CO2_df, 
     yearI = myData[myDataColumn].idxmin()
     year = myData.loc[yearI]['Year']
     dataForYear = findYear(year, WaterCons_df, Temps_df, CO2_df)
-    myhtmlContentFun += getMyStatsHTML("Lowest " + myMeasure, year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'], myClasses)
+    mContent = getMyStatsHTML("Lowest " + myMeasure, year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'], myClasses)
     # Getting the max
     yearI = myData[myDataColumn].idxmax()
     year = myData.loc[yearI]['Year']
     dataForYear = findYear(year, WaterCons_df, Temps_df, CO2_df)
-    myhtmlContentFun += getMyStatsHTML("Highest " + myMeasure, year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'], myClasses)
+    mContent += getMyStatsHTML("Highest " + myMeasure, year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'], myClasses)
+
+    totalContent = w.myCreateNewTagClass("div", mContent, "statsDiv")
+
+    myhtmlContentFun += totalContent
 
     return myhtmlContentFun
 

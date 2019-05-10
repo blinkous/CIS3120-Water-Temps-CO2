@@ -45,13 +45,19 @@ h3{
     font-weight: bolder;
     text-transform: uppercase;
 }
+.statsDiv{
+    /* background-color: #008be7;
+    border: 10px solid #3b515c; */
+    width: 800px;
+    height: 300px;
+    margin: auto;
+}
 .WaterStat, .TempStat, .CO2Stat{
-    width: 350px;
+    width: 45%;
     height: 250px;
     padding: 20px;
     float: left;
     border-radius: 50px;
-    /* border: 1px solid #00aeff; */
     margin: 10px 20px;
 }
 .WaterStat h5, .TempStat h5, .CO2Stat h5{
