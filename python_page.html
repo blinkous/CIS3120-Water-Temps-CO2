@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:100|Open+Sans" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,400" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css"/>
@@ -41,7 +42,45 @@
     <p>Year: 1980.0</p>
     <p>Water: 1506.0</p>
     <p>Temp: 55.0</p>
-    <p>CO2: 224.1</p></div><script>var waterArr = [];
+    <p>CO2: 224.1</p></div><script>var yearArr = [];
+yearArr.push(1980);
+    yearArr.push(1981);
+    yearArr.push(1982);
+    yearArr.push(1983);
+    yearArr.push(1984);
+    yearArr.push(1985);
+    yearArr.push(1986);
+    yearArr.push(1987);
+    yearArr.push(1988);
+    yearArr.push(1989);
+    yearArr.push(1990);
+    yearArr.push(1991);
+    yearArr.push(1992);
+    yearArr.push(1993);
+    yearArr.push(1994);
+    yearArr.push(1995);
+    yearArr.push(1996);
+    yearArr.push(1997);
+    yearArr.push(1998);
+    yearArr.push(1999);
+    yearArr.push(2000);
+    yearArr.push(2001);
+    yearArr.push(2002);
+    yearArr.push(2003);
+    yearArr.push(2004);
+    yearArr.push(2005);
+    yearArr.push(2006);
+    yearArr.push(2007);
+    yearArr.push(2008);
+    yearArr.push(2009);
+    yearArr.push(2010);
+    yearArr.push(2011);
+    yearArr.push(2012);
+    yearArr.push(2013);
+    yearArr.push(2014);
+    yearArr.push(2015);
+    yearArr.push(2016);
+    var waterArr = [];
 waterArr.push(1506.0);
     waterArr.push(1309.0);
     waterArr.push(1382.0);
@@ -157,6 +196,45 @@ co2Arr.push(224.1);
     co2Arr.push(163.7);
     </script>
 <h3 id="enterTemp">Water Consumption Predictions</h3>
+<form id="noSubmit">
+    <input type="text" placeholder="Enter Temperature" ng-model="Temperature" id="temp"/>
+    <input type="submit" value="Submit" id="submit"/>
+</form>
+<div id="results">
+</div>
+<script>
+$('#temp').change(function(){
+    getResults();
+});
+function getResults(){
+    mTemp = $('#temp').val();
+    var matchingYears = []
+    var matchingWater = []
+    var matchingCo2 = []
+    var results = ""
+    var match = 0
+
+    for (i = 0; i < yearArr.length; i++) { 
+        if(mTemp == tempArr[i]){
+            match += 1;
+            results += "<h4>Result " + match + "</h4>";
+            matchingYears.push(yearArr[i]);
+            matchingWater.push(waterArr[i]);
+            matchingCo2.push(co2Arr[i]);
+            results += "<p>Year: " + yearArr[i] + "</p>";
+            results += "<p>Temp: " + tempArr[i] + "</p>";
+            results += "<p>Water Consumption: " + waterArr[i] + "</p>";
+            results += "<p>CO2 Emissions: " + co2Arr[i] + "</p>";
+        }
+    }
+    $('#results').html(results);
+
+}
+$('#noSubmit').submit(function(event){
+    event.preventDefault();
+    getResults();
+})
+</script>
 </div>
 </body>
 </html>
