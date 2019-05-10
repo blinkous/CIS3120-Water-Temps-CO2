@@ -26,6 +26,22 @@ def myCreateNewTag(tagName, string):
     tag = "<" + tagName + ">" + string + "</" + tagName + ">"
     return tag
 
-def myCreateNewTagWClass(tagName, string, classname):
-    tag = "<" + tagName + " class=\"" + classname + "\">" + string + "</" + tagName + ">"
+def myCreateNewTagClass(tagName, string, myClass):
+    tag = "<" + tagName + " class=\"" + myClass + "\">" + string + "</" + tagName + ">"
+    return tag
+    
+def myCreateSelfClosingTag(tagName, string):
+    tag = "<" + tagName + ">" + string + "/>"
+    return tag
+
+def myCreateSelfClosingTagClass(tagName, string, myClass):
+    tag = "<" + tagName + " class=\"" + myClass + "\"" + string + "/>"
+    return tag
+
+def myCreateImgTag(imgSrc):
+    tag = "<img src=\"" + imgSrc + "\"/>"
+    return tag
+
+def myCreateImgTagClass(imgSrc, myClass):
+    tag = "<img class=\"" + myClass + "\" src=\"" + imgSrc + "\"/>"
     return tag

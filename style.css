@@ -1,4 +1,22 @@
-body{
+#wrapper{
     width: 80%;
     margin: auto;
+}
+h1{
+    text-align: center;
+}
+.WaterStat, .TempStat, .CO2Stat{
+    width: 300px;
+    height: 250px;
+    padding: 20px;
+    float: left;
+    border-radius: 50px;
+    border: 1px solid #e100ff;
+    margin: 10px;
+}
+.WaterStat h5, .TempStat h5, .CO2Stat h5{
+    text-align: center;
+}
+.graph img{
+    width: 200px;
 }
