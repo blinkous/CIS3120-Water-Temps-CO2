@@ -1,6 +1,6 @@
 import pandas as pd
-import create_web_page as w
 import my_reading_data as r
+import my_create_web_page as w
 
 # 1: Preparing the data using external script ======================================================================
 # Read the csv using functions defined in the my_reading_data.py file
@@ -23,7 +23,8 @@ yVals = list(WaterCons_df['Year'])
 tempVals = list(Temps_df['Temp'])
 co2Vals = list(CO2_df['CO2'])
 plt.plot(yVals, waterVals, yVals, tempVals, yVals, co2Vals)
-plt.show() """
+# plt.show()
+plt.savefig('blinkous.png') """
 
 # Creating one dataframe to contain all of the data
 TempsOnly_df = Temps_df['Temp']
@@ -33,13 +34,27 @@ data = data.drop(columns=['index'])
 print(data)
 
 # 2: Finding highest and lowest ======================================================================
-def getMyStats(year, water, temp, co2):
+def getMyStatsPython(year, water, temp, co2):
     stats = """
- Year: """ + str(year) + """
-Water: """ + str(water) + """
- Temp: """ + str(temp) + """
-  CO2: """ + str(co2)
+ Year: """ + to_str(year) + """
+Water: """ + to_str(water) + """
+ Temp: """ + to_str(temp) + """
+  CO2: """ + to_str(co2)
     return stats
+
+def getMyStatsHTML(year, water, temp, co2):
+    stats = w.myCreateNewTag("p", 'Year: ' + to_str(year))
+    stats += """
+""" + w.myCreateNewTag("p", 'Water: ' +to_str(water))
+    stats += """
+""" + w.myCreateNewTag("p", 'Temp: ' +to_str(temp))
+    stats += """
+""" + w.myCreateNewTag("p", 'CO2: ' +to_str(co2))
+    return stats
+
+def to_str(var):
+    import numpy as np
+    return str(list(np.reshape(np.asarray(var), (1, np.size(var)))[0]))[1:-1]
 
 def PrintMyStats(year, water, temp, co2):
     print(' Year:', year)
@@ -61,20 +76,24 @@ def findYear(year, WaterCons_df, Temps_df, CO2_df):
     data = {'water': water, 'temp': temp, 'co2': co2}
     return data
 
-print("Lowest Water Consumption")
+
+stats = w.myCreateNewTag('h5','Lowest Water Consumption') + """
+"""
 yearI = WaterCons_df['TotalCons'].idxmin()
 year = WaterCons_df.loc[yearI]['Year']
 dataForYear = findYear(year, WaterCons_df, Temps_df, CO2_df)
-stats = getMyStats(year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
+stats += getMyStatsHTML(year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
 
-print("Highest Water Consumption")
+print()
 yearI = WaterCons_df['TotalCons'].idxmax()
 year = WaterCons_df.loc[yearI]['Year']
 dataForYear = findYear(year, WaterCons_df, Temps_df, CO2_df)
-stats = stats + (year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
+stats += """
+""" + w.myCreateNewTag('h5','Lowest Water Consumption') + """
+""" + getMyStatsHTML(year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
 
 print(stats)
 
-# filename = 'file:///Users/Sara/Documents/Python/Group_Project/web_version/python_page.html'
+filename = 'file:///Users/Sara/Documents/Python/Group_Project/web_version/python_page.html'
 
-# w.createHtml(stats, filename)
+w.createHtml(stats, filename)
