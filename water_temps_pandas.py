@@ -1,4 +1,5 @@
 import pandas as pd
+import create_web_page as w
 import my_reading_data as r
 
 # 1: Preparing the data using external script ======================================================================
@@ -32,7 +33,15 @@ data = data.drop(columns=['index'])
 print(data)
 
 # 2: Finding highest and lowest ======================================================================
-def printMyStats(year, water, temp, co2):
+def getMyStats(year, water, temp, co2):
+    stats = """
+ Year: """ + str(year) + """
+Water: """ + str(water) + """
+ Temp: """ + str(temp) + """
+  CO2: """ + str(co2)
+    return stats
+
+def PrintMyStats(year, water, temp, co2):
     print(' Year:', year)
     print('Water:', water)
     print(" Temp:", temp)
@@ -56,10 +65,16 @@ print("Lowest Water Consumption")
 yearI = WaterCons_df['TotalCons'].idxmin()
 year = WaterCons_df.loc[yearI]['Year']
 dataForYear = findYear(year, WaterCons_df, Temps_df, CO2_df)
-printMyStats(year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
+stats = getMyStats(year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
 
 print("Highest Water Consumption")
 yearI = WaterCons_df['TotalCons'].idxmax()
 year = WaterCons_df.loc[yearI]['Year']
 dataForYear = findYear(year, WaterCons_df, Temps_df, CO2_df)
-printMyStats(year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
+stats = stats + (year, dataForYear['water'], dataForYear['temp'], dataForYear['co2'])
+
+print(stats)
+
+# filename = 'file:///Users/Sara/Documents/Python/Group_Project/web_version/python_page.html'
+
+# w.createHtml(stats, filename)

@@ -4,8 +4,7 @@ import pandas as pd
 # WATER CONSUMPTION
 def readWater():
     # Read the file into Pandas Dataframe
-    # WaterCons_df = pd.read_csv('Water_Consumption_In_The_New_York_City.csv')
-    WaterCons_df = pd.read_csv('https://github.com/Razua9617/CIS3120/blob/master/daily_nyc_temp_data_1979_2017.csv')
+    WaterCons_df = pd.read_csv('Water_Consumption_In_The_New_York_City.csv')
 
     # Rename Columns so that it's easier to work with: TotalCons = total water consumption, CapitaCons = per capita water consumption
     WaterCons_df.columns = ['Year', 'Pop', 'TotalCons', 'CapitaCons']
@@ -17,8 +16,7 @@ def readWater():
 # TEMPERATURES
 def readTemp():
     # Read the file into Pandas Dataframe, skip the first few rows with no data and drop rows with incomplete data
-    # Temps_df = pd.read_csv('monthlyannualtempcentralpark.csv', skiprows=4)
-    Temps_df = pd.read_csv('https://github.com/Razua9617/CIS3120/blob/master/monthlyannualtempcentralpark.csv', skiprows=4)
+    Temps_df = pd.read_csv('monthlyannualtempcentralpark.csv', skiprows=4)
     Temps_df = Temps_df.dropna()
 
     # Take only the columns we want
@@ -35,8 +33,7 @@ def readTemp():
 # CO2 EMISSIONS in case we still want this data
 def readCO2():
     # Read the file into Pandas Dataframe, skip the first few rows with no data and drop rows with incomplete data
-    # CO2_df = pd.read_csv('new_york_co2_emissions.csv', skiprows=3)
-    CO2_df = pd.read_csv('https://github.com/Razua9617/CIS3120/blob/master/new_york_co2_emissions.csv', skiprows=3)
+    CO2_df = pd.read_csv('new_york_co2_emissions.csv', skiprows=3)
 
     # Drop the first column
     CO2_df.drop(CO2_df.columns[0], axis=1, inplace=True)
