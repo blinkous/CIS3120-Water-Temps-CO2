@@ -14,19 +14,17 @@ CO2_df = r.readCO2()
 # Ensure that the data has the same year ranges
 lowerBoundYear = r.lowerYearBound(WaterCons_df, Temps_df, CO2_df)
 upperBoundYear = r.upperYearBound(WaterCons_df, Temps_df, CO2_df)
-
 WaterCons_df = WaterCons_df[(WaterCons_df['Year'] >= lowerBoundYear) & (WaterCons_df['Year'] <= upperBoundYear)].reset_index()
 Temps_df = Temps_df[(Temps_df['Year'] >= lowerBoundYear) & (Temps_df['Year'] <= upperBoundYear)].reset_index()
 CO2_df = CO2_df[(CO2_df['Year'] >= lowerBoundYear) & (CO2_df['Year'] <= upperBoundYear)].reset_index()
 
 myHTMLContent += w.myCreateNewTagID('h3', 'Time Series Graphs', 'timeSeries')
-# Graph of all 3 datasets
+# Time Series Graphs of all 3 datasets
 import matplotlib.pyplot as plt
 waterVals = list(WaterCons_df['TotalCons'])
 yVals = list(WaterCons_df['Year'])
 tempVals = list(Temps_df['Temp'])
 co2Vals = list(CO2_df['CO2'])
-# plt.plot(yVals, waterVals, yVals, tempVals, yVals, co2Vals)
 plt.clf()
 myImages = ""
 plt.plot(yVals, waterVals, color='skyblue')
@@ -60,7 +58,6 @@ TempsOnly_df = Temps_df['Temp']
 CO2Only_df = CO2_df['CO2']
 data = pd.concat([WaterCons_df, TempsOnly_df, CO2Only_df], axis=1, sort=False)
 data = data.drop(columns=['index'])
-# print(data)
 
 # 2: Finding highest and lowest ======================================================================
 # Get the stats in HTML form
@@ -77,6 +74,7 @@ def getMyStatsHTML(headTitle, year, water, temp, co2, myClass):
     totalContent = w.myCreateNewTagClass("div", stats, myClass)
     return totalContent
 
+# Convert the dataframe data to string
 def to_str(var):
     import numpy as np
     return str(list(np.reshape(np.asarray(var), (1, np.size(var)))[0]))[1:-1]
@@ -95,7 +93,7 @@ def findYear(year, WaterCons_df, Temps_df, CO2_df):
     data = {'water': water, 'temp': temp, 'co2': co2}
     return data
 
-
+# Find the min and max for the data and return the string of html content
 def findMinMax(myData, myDataColumn, myMeasure, WaterCons_df, Temps_df, CO2_df, myhtmlContentFun, myClasses):
     # Getting the min
     yearI = myData[myDataColumn].idxmin()
@@ -121,7 +119,7 @@ myHTMLContent = findMinMax(Temps_df, 'Temp', 'Temperatures', WaterCons_df, Temps
 myHTMLContent = findMinMax(CO2_df, 'CO2', 'CO2', WaterCons_df, Temps_df, CO2_df, myHTMLContent, 'CO2Stat')
 
 
-# Creating the data in javascript
+# Creating the data arrays in javascript
 myArrays = "<script>"
 yearArray = """var yearArr = [];
 """
@@ -155,5 +153,8 @@ myArrays += yearArray + waterArray + tempArray + co2Array + "</script>"
 
 myHTMLContent += myArrays
 
-filename = 'file:///Users/Sara/Documents/Python/Group_Project/web_version/python_page.html'
-w.createHtml(myHTMLContent, filename)
+# Create and open the webpage
+import os
+# Create the file path string that will be used to create and open the webpage
+FilePath = "file://" + os.getcwd() + "/python_page.html"
+w.createHtml(myHTMLContent, FilePath)
