@@ -6,59 +6,65 @@
 <div id="results">
 </div>
 <script>
-$('#temp').change(function(){
-    getResults();
-});
-function getResults(){
-    mTemp = $('#temp').val();
-    var matchingYears = [];
-    var matchingWater = [];
-    var matchingCo2 = [];
-    var results = "";
-    var match = 0;
-    var totalW = 0;
-    var totalC = 0;
+    // Refresh the results every time user input changes
+    document.getElementById("temp").addEventListener("input", getResults)
+    function getResults(){
+        mTemp = $('#temp').val();
 
-    for (i = 0; i < yearArr.length; i++) { 
-        if(mTemp == tempArr[i]){
-            match += 1;
-            results += "<div class=\"tResult\"><h4>Result " + match + "</h4>";
-            matchingYears.push(yearArr[i]);
-            matchingWater.push(waterArr[i]);
-            matchingCo2.push(co2Arr[i]);
-            results += "<p>Year: " + yearArr[i] + "</p>";
-            results += "<p>Temp: " + tempArr[i] + "</p>";
-            results += "<p>Water Consumption: " + waterArr[i] + "</p>";
-            results += "<p>CO2 Emissions: " + co2Arr[i] + "</p></div>";
-            totalW += waterArr[i]
-            totalC += co2Arr[i]
+        // If there is something in the temperature field input, find matches, else, display nothing
+        if(mTemp != ""){
+            var matchingYears = [];
+            var matchingWater = [];
+            var matchingCo2 = [];
+            var results = "";
+            var match = 0;
+            var totalW = 0;
+            var totalC = 0;
+
+            // Create a list of matching results
+            for (i = 0; i < yearArr.length; i++) { 
+                if(mTemp == tempArr[i]){
+                    match += 1;
+                    results += "<div class=\"tResult\"><h4>Result " + match + "</h4>";
+                    matchingYears.push(yearArr[i]);
+                    matchingWater.push(waterArr[i]);
+                    matchingCo2.push(co2Arr[i]);
+                    results += "<p>Year: " + yearArr[i] + "</p>";
+                    results += "<p>Temp: " + tempArr[i] + "</p>";
+                    results += "<p>Water Consumption: " + waterArr[i] + "</p>";
+                    results += "<p>CO2 Emissions: " + co2Arr[i] + "</p></div>";
+                    totalW += waterArr[i]
+                    totalC += co2Arr[i]
+                }
+            }
+
+            // Display the results if there are any
+            if(match > 0){
+                var avgW = totalW/match
+                var avgC = (totalC/match)
+                var prediction = "<div class=\"predict\">";
+                prediction += "<h4 class=\"water\">Predicted Water Consumption</h4>";
+                prediction += "<p>" + avgW + " million gallons per day</p>";
+                prediction += "<h4 class=\"co2\">Predicted CO2 Emissions</h4>";
+                prediction += "<p>" + avgC + " million metric tons per year</p>";
+                avgC /= 365;
+                prediction += "<p>" + avgC + " million metric tons per day</p>";
+                prediction += "</div>";
+                results += prediction;
+            }
+            else{
+                results = "<p>No Results</p>"
+            }
+            $('#results').html(results);
+        }
+        else{
+            $('#results').html("");
         }
     }
-    if(match > 0){
-        var avgW = totalW/match
-        var avgC = (totalC/match)
-        var prediction = "<div class=\"predict\">";
-        prediction += "<h4 class=\"water\">Predicted Water Consumption</h4>";
-        prediction += "<p>" + avgW + " million gallons per day</p>";
-        prediction += "<h4 class=\"co2\">Predicted CO2 Emissions</h4>";
-        prediction += "<p>" + avgC + " million metric tons per year</p>";
-        avgC /= 365;
-        prediction += "<p>" + avgC + " million metric tons per day</p>";
-        prediction += "</div>";
-        results += prediction;
-    }
-
-    if(match == 0){
-        results = "<p>No Results</p>"
-    }
-
-    $('#results').html(results);
-
-}
-$('#noSubmit').submit(function(event){
-    event.preventDefault();
-    getResults();
-})
+    $('#noSubmit').submit(function(event){
+        event.preventDefault();
+        getResults();
+    })
 </script>
 </div>
 </body>
