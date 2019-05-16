@@ -211,7 +211,7 @@ co2Arr.push(224.1);
 </div>
 <script>
     // Refresh the results every time user input changes
-    document.getElementById("temp").addEventListener("input", getResults)
+    document.getElementById("temp").addEventListener("input", getResults);
     function getResults(){
         mTemp = $('#temp').val();
 
@@ -237,15 +237,15 @@ co2Arr.push(224.1);
                     results += "<p>Temp: " + tempArr[i] + "</p>";
                     results += "<p>Water Consumption: " + waterArr[i] + "</p>";
                     results += "<p>CO2 Emissions: " + co2Arr[i] + "</p></div>";
-                    totalW += waterArr[i]
-                    totalC += co2Arr[i]
+                    totalW += waterArr[i];
+                    totalC += co2Arr[i];
                 }
             }
 
             // Display the results if there are any
             if(match > 0){
-                var avgW = totalW/match
-                var avgC = (totalC/match)
+                var avgW = totalW/match;
+                var avgC = (totalC/match);
                 var prediction = "<div class=\"predict\">";
                 prediction += "<h4 class=\"water\">Predicted Water Consumption</h4>";
                 prediction += "<p>" + avgW + " million gallons per day</p>";
@@ -257,7 +257,7 @@ co2Arr.push(224.1);
                 results += prediction;
             }
             else{
-                results = "<p>No Results</p>"
+                results = "<p>No Results</p>";
             }
             $('#results').html(results);
         }
