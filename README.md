@@ -1,6 +1,8 @@
 # CIS3120 Group 1
 
+## Demo
 <img src="https://i.imgur.com/6mut7du.gif" width=100%/>
+<!-- <img src="https://i.imgur.com/OV6WE3I.gif" width=100%/> -->
 
 ## The Problem
 The problem that we are addressing is increasing CO2 emissions and waste production. In 2018, CO2 emissions reached an all time after being pretty steady for a few years (Harvey; Plumer). This uptick in emissions highlights the need for efforts to reduce our carbon footprint and waste production. Our goal is to help the local government lower the carbon footprint in New York by preventing excess waste through conservation.
@@ -26,9 +28,9 @@ Our solution is a way to predict annual CO2 emissions and water consumption base
 - The .py file should open up the page in the default browser; the page is optimized for Google Chrome
 
 ## Data Sets
-CO2 Emission Data: https://www.eia.gov/environment/emissions/state/ 
-Water Consumption Data: https://data.cityofnewyork.us/Environment/Water-Consumption-In-The-New-York-City/ia2d-e54m 
-Weather Data: https://www.weather.gov/media/okx/Climate/CentralPark/monthlyannualtemp.pdf 
+- CO2 Emission Data: https://www.eia.gov/environment/emissions/state/ 
+- Water Consumption Data: https://data.cityofnewyork.us/Environment/Water-Consumption-In-The-New-York-City/ia2d-e54m 
+- Weather Data: https://www.weather.gov/media/okx/Climate/CentralPark/monthlyannualtemp.pdf 
 
 ## Works Cited
 Harvey, Chelsea. “CO2 Emissions Reached an All-Time High in 2018.” Scientific American, 6 Dec. 2018. https://www.scientificamerican.com/article/co2-emissions-reached-an-all-time-high-in-2018/ 
