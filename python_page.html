@@ -213,10 +213,14 @@ co2Arr.push(224.1);
     // Refresh the results every time user input changes
     document.getElementById("temp").addEventListener("input", getResults);
     function getResults(){
-        mTemp = $('#temp').val();
+        var mTempRaw = $('#temp').val();
+        var mTemp = parseFloat($('#temp').val());
 
         // If there is something in the temperature field input, find matches, else, display nothing
-        if(mTemp != ""){
+        if(mTempRaw != ""){
+            var lowMTemp = mTemp - 0.1;
+            var highMTemp = mTemp + 0.1;
+            console.log(mTemp + ":" + lowMTemp + " , " + highMTemp);
             var matchingYears = [];
             var matchingWater = [];
             var matchingCo2 = [];
@@ -225,11 +229,27 @@ co2Arr.push(224.1);
             var totalW = 0;
             var totalC = 0;
 
-            // Create a list of matching results
+            // Create a list of exact matching results
             for (i = 0; i < yearArr.length; i++) { 
-                if(mTemp == tempArr[i]){
+                if(tempArr[i] == mTemp){
                     match += 1;
                     results += "<div class=\"tResult\"><h4>Result " + match + "</h4>";
+                    matchingYears.push(yearArr[i]);
+                    matchingWater.push(waterArr[i]);
+                    matchingCo2.push(co2Arr[i]);
+                    results += "<p>Year: " + yearArr[i] + "</p>";
+                    results += "<p>Temp: " + tempArr[i] + "</p>";
+                    results += "<p>Water Consumption: " + waterArr[i] + "</p>";
+                    results += "<p>CO2 Emissions: " + co2Arr[i] + "</p></div>";
+                    totalW += waterArr[i];
+                    totalC += co2Arr[i];
+                }
+            }
+            // Add results that are with 0.1 of the requested temperature
+            for (i = 0; i < yearArr.length; i++) { 
+                if(tempArr[i] != mTemp && tempArr[i] >= lowMTemp && tempArr[i] <= highMTemp){
+                    match += 1;
+                    results += "<div class=\"tResult secondResult\"><h4>Result " + match + "</h4>";
                     matchingYears.push(yearArr[i]);
                     matchingWater.push(waterArr[i]);
                     matchingCo2.push(co2Arr[i]);
