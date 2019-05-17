@@ -1,7 +1,6 @@
 # Water, Temps & CO2
 ### CIS3120 Group 1
 
-## Demo
 <img src="https://i.imgur.com/6mut7du.gif" width=100%/>
 <!-- <img src="https://i.imgur.com/OV6WE3I.gif" width=100%/> -->
 
